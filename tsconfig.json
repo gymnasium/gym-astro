@@ -8,9 +8,10 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@content/*": ["src/content/*"],
-      "@css/*": ["src/css/*"],
+      "@assets/*": ["src/assets/*"],
       "@data/*": ["src/data/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@globals/*": ["src/globals/*"],
     },
     "strictNullChecks": true
   }
