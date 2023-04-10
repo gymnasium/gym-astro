@@ -8,26 +8,26 @@ import react from "@astrojs/react";
 import yaml from '@rollup/plugin-yaml';
 // import partytown from "@astrojs/partytown";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    astroImageTools,
-    compress(),
-    sitemap(),
-    robotsTxt(),
-    react(),
-    // partytown({
-    //   // Example: Disable debug mode.
-    //   config: { 
-    //     debug: true,
-    //     forward: ["dataLayer.push"]
-    //   },
-  
-    // })
+  integrations: [astroImageTools, compress(), mdx(), react(), robotsTxt(), sitemap(),
+  // partytown({
+  //   // Example: Disable debug mode.
+  //   config: { 
+  //     debug: true,
+  //     forward: ["dataLayer.push"]
+  //   },
+
+  // })
   ],
-  output: "server",
-  adapter: netlify(),
+  // output: "server",
+  // adapter: netlify(),
   vite: {
     plugins: [yaml()]
-  }
+  },
+  // experimental: {
+  //   assets: true
+  // }
 });
