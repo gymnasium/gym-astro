@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import DefaultLayout from '@layouts/DefaultLayout.astro';
+const bios = (await getCollection('bios')).sort(
+  (a, b) => a.data.name.valueOf() - b.data.name.valueOf()
+);
+---
+<DefaultLayout>
+  <h1>Bios</h1>
+  <section>
+    <ul>
+      {
+        bios.map((bio) => (
+          <li>
+            <a href={`/bios/${bio.slug}/`}>{bio.data.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</DefaultLayout>

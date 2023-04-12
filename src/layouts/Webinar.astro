@@ -1,0 +1,111 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import DefaultLayout from './DefaultLayout.astro'
+
+import Bio from '@components/Bio.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+
+type Props = CollectionEntry<'webinars'>['data'];
+
+const { content_category, description, event_date, event_ogimage, host, id, landing, recording_ogimage, register, resources, speaker, subtitle, time, title, video, video_id, webinar_id, webinar_question_key } = Astro.props;
+---
+
+<DefaultLayout
+content_category={content_category}
+description={description}
+event_date={event_date}
+event_ogimage={event_ogimage}
+host={host}
+id={id}
+landing={landing}
+recording_ogimage={recording_ogimage}
+resources={resources}
+speaker={speaker}
+subtitle={subtitle}
+time={time}
+title={title}
+video={video}
+video_id={video_id}
+webinar_id={webinar_id}
+webinar_question_key={webinar_question_key}
+
+>
+  <article>
+
+    <header class="main-header event-header">
+      <h1>Webinar</h1>
+      {video && <h2>Recording</h2>}
+      {!video && <h2>Registration</h2>}
+    </header>
+
+    <header class="event-banner-hero event-theme-{{ webinar.content_category }}">
+    <h1>{title}</h1>
+    <h2>{subtitle}</h2>
+
+    {video && <h3 class="datetime">{event_date}</h3>}
+    {!video && <h3 class="datetime">{event_date}{time}</h3>}
+  </header>
+
+    <p class="call-out">{description}</p>
+
+    {
+      register && <!-- DEBUG: registration form -->
+      // {% include webinar-registration-form.html %}
+    }
+
+    {
+      !register && video && video_id && <!-- DEBUG: registration over, showing video stuff -->
+      <p><strong>This webinar recording is now available.</strong></p>
+      // {% include event-video.html %}
+    }
+
+    {
+      !register && !video && !video_id && <!-- DEBUG: registration over, video not available yet -->
+      <p class="call-out"><strong>This webinar recording will be available soon…</strong></p>
+    }
+
+    {
+      resources && video && video_id && <!-- DEBUG: show resources -->
+      // {% include webinar-resources.html %}
+    }
+
+    <slot />
+
+  </article>
+
+  <!-- sidebar -->
+
+  <aside>
+
+    <!-- {%- capture headcount -%}{{ webinar.speaker | size }}{%- endcapture -%} -->
+    {
+      speaker.length > 1 ? <h1>Guest Speakers</h1> : <h1>Guest Speaker</h1>
+    }
+    {
+      speaker.map((bio) => (
+        <li>
+          <Bio bio={bio} />
+        </li>
+      ))
+    }
+    <header>
+      <!-- {%- if headcount == "1"  -%} -->
+      
+      <!-- {%- else -%} -->
+      
+      <!-- {%- endif -%} -->
+    </header>
+    <!-- {% for speaker in webinar.speaker %}
+      {%- include webinar-bio.html bio=speaker -%}
+    {% endfor %} -->
+
+    <header>
+      <h1>Host</h1>
+    </header>
+    <!-- {% for host in webinar.host %}
+      {%- include webinar-bio.html bio=host -%}
+    {% endfor %} -->
+  </aside>
+
+</DefaultLayout>
+

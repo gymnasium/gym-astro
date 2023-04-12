@@ -1,0 +1,15 @@
+---
+import { getEntryBySlug } from 'astro:content';
+
+const bio = Astro.props.bio;
+const person = await getEntryBySlug('bios', bio)
+const {data, slug} = person;
+const image:any = data.headshot ? `../assets/img/headshots/${data.headshot}`: undefined
+---
+<div class="card" >
+	<h3 class="title">{data.name}</h3>
+  <h4 class="subtitle">{data.subtitle}</h4>
+	<img src={(await import(image /* @vite-ignore */)).default} alt={`Image of ${data.name}`} loading="lazy" decoding="async" />
+  <p>{data.description}</p>
+  <a href={`/bios/${slug}`}>Read more</a>
+</div>

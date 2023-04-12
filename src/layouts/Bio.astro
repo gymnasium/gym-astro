@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import DefaultLayout from './DefaultLayout.astro'
+
+type Props = CollectionEntry<'bios'>['data'];
+
+const { name, slug, description, subtitle, headshot } = Astro.props;
+---
+
+<DefaultLayout
+name={name}
+description={description}
+subtitle={subtitle}
+slug={slug}
+headshot={headshot}
+>
+  <article>
+    <slot />
+  </article>
+</DefaultLayout>
+
+<style>
+  .title {
+    font-size: 2em;
+    margin: 0.25em 0 0;
+  }
+  hr {
+    border-top: 1px solid #ddd;
+    margin: 1rem 0;
+  }
+</style>
