@@ -2,9 +2,7 @@
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem, Card, Pagination } from 'accessible-astro-components'
 
-import { CMS_URL } from '@globals'
-
-export const FEED_URL = `${CMS_URL}/feeds/complete.json`
+import { CMS_URL, FEED_URL } from '@globals'
 
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(FEED_URL)
@@ -28,7 +26,7 @@ const { page } = Astro.props
   <section>
     <h1>Instructors</h1>
     <p>
-      This page fetches the instructor bios via a JSON feed provided by the gymcms: <a href=`${FEED_URL}`>${FEED_URL}</a>.
+      This page fetches the instructor bios via a JSON feed provided by the gymcms: <a href={FEED_URL}>{FEED_URL}</a>.
     </p>
   </section>
   <section>
