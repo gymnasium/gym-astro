@@ -9,31 +9,26 @@ interface Props {
   author?: any | null;
 }
 
-const { title, description, url, image, author } = Astro.props
+const { title, description, url, image, author } = Astro.props;
 
 const metaTitle = title ? `${title} | ${global.SITE_TITLE}` : global.SITE_TITLE;
-
-// console.log(title, description, url, image, author)
+const metaAuthor = author ? `${author}` : global.SITE_AUTHOR;
+const metaDesc = description ? `${description}` : global.SITE_DESCRIPTION;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<!-- favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- general meta -->
 <title>{metaTitle}</title>
 <meta name="title" content={metaTitle} />
-<meta name="description" content={description} />
-<meta name="author" content={author} />
+<meta name="description" content={metaDesc} />
+<meta name="author" content={metaAuthor} />
 <meta name="generator" content={Astro.generator} />
-<!-- open graph -->
+
 <meta property="og:title" content={`${title} | ${siteName}`} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={metaDesc} />
 <meta property="og:type" content="website" />
 <meta property="og:url" content={url} />
 <meta property="og:image" content={Astro.url ? `${Astro.url}${image}` : image} />
-
-<!-- twitter card -->
-

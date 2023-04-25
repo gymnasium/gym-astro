@@ -1,12 +1,12 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
-import { CMS_URL, FEED_URL } from '@globals'
+import { FEED_URL } from '@globals'
 
 export async function getStaticPaths() {
   const data = await fetch(FEED_URL).then((response) => response.json())
 
-  return data.items.bios.map((bio) => {
+  return data.items.bios.map((bio:any) => {
     return {
       params: { bio: bio.title.replaceAll(' ', '-').toLowerCase() },
       props: { bio },

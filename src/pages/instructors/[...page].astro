@@ -2,7 +2,7 @@
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem, Card, Pagination } from 'accessible-astro-components'
 
-import { CMS_URL, FEED_URL } from '@globals'
+import { FEED_URL } from '@globals'
 
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(FEED_URL)
