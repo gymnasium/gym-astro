@@ -1,32 +1,33 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { CMS_URL } from '@globals'
 
 export async function getStaticPaths() {
-  const data = await fetch('http://localhost:4000/feeds/courses.json').then((response) => response.json())
+  const data = await fetch(`${CMS_URL}/feeds/complete.json`).then((response) => response.json())
 
-  return data.courses.map((post) => {
+  return data.items.courses.map((course) => {
     return {
-      params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
-      props: { post },
+      params: { course: course.title.replaceAll(' ', '-').toLowerCase() },
+      props: { course },
     }
   })
 }
 
-const { post } = Astro.props
+const { course } = Astro.props
 ---
 
-<DefaultLayout title={post.title} description={post.body} url={post.title}>
+<DefaultLayout title={course.title} description={course.body} url={course.title}>
   <Breadcrumbs>
     <BreadcrumbsItem href="/" label="Home" />
     <BreadcrumbsItem href="/courses/" label="Courses via JSON" />
-    <BreadcrumbsItem currentPage={true} label={post.title} />
+    <BreadcrumbsItem currentPage={true} label={course.title} />
   </Breadcrumbs>
   <section class="">
-    <h1>{post.title}</h1>
-    <h4>{post.id}</h4>
-    {post.img && <img src={`${post.img}`} alt={`Image of ${post.title}`} />}
-    <p>{post.description}</p>
+    <h1>{course.title}</h1>
+    <h4>{course.id}</h4>
+    {course.img && <img src={`${CMS_URL}${course.img}`} alt={`Image of ${course.title}`} />}
+    <p>{course.description}</p>
   </section>
 </DefaultLayout>
 

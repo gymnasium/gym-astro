@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
-import { Card, Pagination } from 'accessible-astro-components'
-import CourseSearch from '@components/CourseSearch.astro'
+import { Breadcrumbs, BreadcrumbsItem, Card, Pagination } from 'accessible-astro-components'
+
 import { CMS_URL } from '@globals'
 
 export const FEED_URL = `${CMS_URL}/feeds/complete.json`
@@ -10,39 +10,40 @@ export async function getStaticPaths({ paginate }) {
   const response = await fetch(FEED_URL)
   const data = await response.json()
 
-  const courses = data.items.courses.filter((course) => course.live);
+  const bios = data.items.bios;
 
-  return paginate(courses, { pageSize: 6 })
+  return paginate(bios, { pageSize: 6 })
 }
 
 const { page } = Astro.props
 ---
 <DefaultLayout
-  title="Courses"
-  description="This page fetches the courses via a JSON feed provided by the gymcms."
+  title="Instructors"
+  description="This page fetches the instructor bios via a JSON feed provided by the gymcms."
 >
+  <Breadcrumbs>
+    <BreadcrumbsItem href="/" label="Home" />
+    <BreadcrumbsItem currentPage={true} label="Instructors" />
+  </Breadcrumbs>
   <section>
-    <h1>Courses</h1>
+    <h1>Instructors</h1>
     <p>
-      This page fetches the courses via a JSON feed provided by the gymcms: <a href=`${FEED_URL}`>${FEED_URL}</a>.
+      This page fetches the instructor bios via a JSON feed provided by the gymcms: <a href=`${FEED_URL}`>${FEED_URL}</a>.
     </p>
   </section>
   <section>
-    <CourseSearch dataType="courses" />
-  </section>
-  <section>
-    <p class="text-sm"><em>Course {page.start + 1} through {page.end + 1} of {page.total} total courses</em></p>
+    <p class="text-sm"><em>Page {page.start + 1} through {page.end + 1} of {page.total} total pages</em></p>
     <ul class="my-3">
       {
-        page.data.map((course) => (
+        page.data.map((bio) => (
           <li>
             <Card
-              url={`/courses/${course.title.replaceAll(' ', '-').toLowerCase()}`}
-              title={course.title}
-              footer={course.topic}
-              img={`${CMS_URL}${course.img}`}
+              url={`/instructors/${bio.title.replaceAll(' ', '-').toLowerCase()}`}
+              title={bio.title}
+              footer={bio.subtitle}
+              img={`${bio.img}`}
             >
-              {course.description}
+              {bio.description}
             </Card>
           </li>
         ))
@@ -50,10 +51,10 @@ const { page } = Astro.props
     </ul>
     <div class="mt-12 grid place-content-center">
       <Pagination
-        firstPage={page.url.prev ? '/courses/' : null}
+        firstPage={page.url.prev ? '/instructors/' : null}
         previousPage={page.url.prev ? page.url.prev : null}
         nextPage={page.url.next ? page.url.next : null}
-        lastPage={page.url.next ? `/courses/${Math.round(page.total / page.size)}` : null}
+        lastPage={page.url.next ? `/instructors/${Math.round(page.total / page.size)}` : null}
         currentPage={page.currentPage}
         totalPages={Math.round(page.total / page.size)}
       />
