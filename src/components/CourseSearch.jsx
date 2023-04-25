@@ -1,3 +1,5 @@
+// via @https://danidiaztech.com/create-astro-search-component/
+
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 
@@ -10,14 +12,14 @@ const options = {
   threshold: 0.5,
 };
 
-function Search({ searchList }) {
+function Search({ searchList, dataType }) {
   // User's input
   const [query, setQuery] = useState('');
 
   const fuse = new Fuse(searchList, options);
 
   // Set a limit to the posts: 5
-  const courses = fuse
+  const items = fuse
     .search(query)
     .map((result) => result.item)
     .slice(0, 5);
@@ -27,21 +29,22 @@ function Search({ searchList }) {
     setQuery(value);
   }
 
+  const placeholder = `Search for ${dataType}`
+
   return (
     <>
       <label>Search</label>
-      <input type="text" value={query} onChange={handleOnSearch} placeholder="Search courses" />
+      <input type="text" value={query} onChange={handleOnSearch} placeholder={placeholder} />
       {query.length > 1 && (
         <p>
-          Found {courses.length} {courses.length === 1 ? 'result' : 'results'} for '{query}'
+          Found {items.length} {items.length === 1 ? 'result' : 'results'} for '{query}'
         </p>
       )}
       <ul>
-        {courses &&
-          courses.map((course) => (
+        {items &&
+          items.map((item) => (
             <li>
-              <a href={`/courses/${course.title.toLowerCase().replaceAll(' ', '-')}`}>{course.title}</a>
-              {course.description}
+              <a href={`/${dataType}/${item.title.toLowerCase().replaceAll(' ', '-')}`}>{item.title}</a> - {item.description}
             </li>
           ))}
       </ul>

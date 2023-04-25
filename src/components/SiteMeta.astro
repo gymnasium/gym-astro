@@ -1,14 +1,17 @@
 ---
 const siteName = 'Aquent Gymnasium'
+import * as global from '@globals'
 
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
-  image?: string | undefined;
-  author?: string | undefined;
+	title?: any | null;
+	description?: any | null;
+  image?: any | null;
+  author?: any | null;
 }
 
 const { title, description, url, image, author } = Astro.props
+
+const metaTitle = title ? `${title} | ${global.SITE_TITLE}` : global.SITE_TITLE;
 
 // console.log(title, description, url, image, author)
 ---
@@ -20,7 +23,8 @@ const { title, description, url, image, author } = Astro.props
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 <!-- general meta -->
-<meta name="title" content={title} />
+<title>{metaTitle}</title>
+<meta name="title" content={metaTitle} />
 <meta name="description" content={description} />
 <meta name="author" content={author} />
 <meta name="generator" content={Astro.generator} />
@@ -33,5 +37,3 @@ const { title, description, url, image, author } = Astro.props
 
 <!-- twitter card -->
 
-<!-- page title -->
-<title>{title} - {siteName}</title>

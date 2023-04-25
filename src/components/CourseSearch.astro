@@ -1,0 +1,17 @@
+---
+export interface Props {
+  dataType: string;
+}
+const { dataType } = Astro.props
+
+import Search from './CourseSearch.jsx';
+import { CMS_URL } from '@globals'
+export const FEED_URL = `${CMS_URL}/feeds/courses.json`
+
+const response = await fetch(FEED_URL)
+const data = await response.json()
+const courses = data['items'].filter((course) => course.live);
+
+---
+
+<Search client:load searchList={courses} dataType={dataType} />
