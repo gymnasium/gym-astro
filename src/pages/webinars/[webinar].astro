@@ -1,0 +1,49 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
+import { CMS_URL, FEED_URL } from '@globals'
+
+export async function getStaticPaths() {
+  const data = await fetch(`${CMS_URL}/feeds/webinars.json`).then((response) => response.json())
+
+  return data.items.map((webinar) => {
+    return {
+      params: { webinar: webinar.id },
+      props: { webinar },
+    }
+  })
+}
+
+const { webinar } = Astro.props
+---
+
+<DefaultLayout title={webinar.title} description={webinar.description} url={webinar.title}>
+  <Breadcrumbs>
+    <BreadcrumbsItem href="/" label="Home" />
+    <BreadcrumbsItem href="/webinars/" label="Webinars" />
+    <BreadcrumbsItem currentPage={true} label={webinar.title} />
+  </Breadcrumbs>
+  <section class="">
+    <h1>{webinar.title}</h1>
+    <h4>{webinar.id}</h4>
+    {webinar.event_ogimage && <img src={`${webinar.event_ogimage}`} alt={`Image of ${webinar.title}`} />}
+    <p>{webinar.description}</p>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

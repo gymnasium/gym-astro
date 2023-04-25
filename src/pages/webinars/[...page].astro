@@ -1,0 +1,76 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Card, Pagination } from 'accessible-astro-components'
+import CourseSearch from '@components/CourseSearch.astro'
+import { CMS_URL, FEED_URL } from '@globals'
+
+export async function getStaticPaths({ paginate }) {
+  const response = await fetch(`${CMS_URL}/feeds/webinars.json`)
+  const data = await response.json()
+
+  const webinars = data.items;
+
+  return paginate(webinars, { pageSize: 6 })
+}
+
+const { page } = Astro.props
+---
+<DefaultLayout
+  title="Webinars"
+  description="This page fetches the webinars via a JSON feed provided by the gymcms."
+>
+  <section>
+    <h1>Webinars</h1>
+    <p>
+      This page fetches the webinars via a JSON feed provided by the gymcms: <a href={FEED_URL}>{FEED_URL}</a>.
+    </p>
+  </section>
+
+  <section>
+    <p class="text-sm"><em>Page {page.start + 1} through {page.end + 1} of {page.total} total pages</em></p>
+    <ul class="my-3">
+      {
+        page.data.map((webinar) => (
+          <li>
+            <Card
+              url={`/webinars/${webinar.id}`}
+              title={webinar.title}
+              footer={webinar.subtitle}
+              img={webinar.recording_ogimage}
+              }
+            >
+              {webinar.description}
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-12 grid place-content-center">
+      <Pagination
+        firstPage={page.url.prev ? '/webinars/' : null}
+        previousPage={page.url.prev ? page.url.prev : null}
+        nextPage={page.url.next ? page.url.next : null}
+        lastPage={page.url.next ? `/webinars/${Math.round(page.total / page.size)}` : null}
+        currentPage={page.currentPage}
+        totalPages={Math.round(page.total / page.size)}
+      />
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss">
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4rem;
+
+    @media (min-width: 550px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+    }
+
+    @media (min-width: 950px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
