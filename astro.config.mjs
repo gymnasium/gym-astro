@@ -22,8 +22,9 @@ export default defineConfig({
 
   // })
   ],
-  // output: "server",
+  // output: "static",
   // adapter: netlify(),
+  server: { port: 3030 },
   vite: {
     plugins: [yaml()]
   },
