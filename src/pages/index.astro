@@ -1,38 +1,71 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro';
 import Card from '@components/Card.astro';
+import * as global from '@globals'
 ---
 
-<DefaultLayout title="Welcome to Gymnasium's Astro Experiment.">
-  <main>
-    <h1>Welcome to <span class="text-gradient">Gymnasium's Astro Experiment</span></h1>
-    <p class="instructions">
-      To get started, open the directory <code>src/pages</code> in your project.<br />
-      <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-    </p>
-    <ul role="list" class="link-card-grid">
-      <Card
-        href="https://docs.astro.build/"
-        title="Documentation"
-        body="Learn how Astro works and explore the official API docs."
-      />
-      <Card
-        href="https://astro.build/integrations/"
-        title="Integrations"
-        body="Supercharge your project with new frameworks and libraries."
-      />
-      <Card
-        href="https://astro.build/themes/"
-        title="Themes"
-        body="Explore a galaxy of community-built starter themes."
-      />
-      <Card
-        href="https://astro.build/chat/"
-        title="Community"
-        body="Come say hi to our amazing Discord community. ❤️"
-      />
-    </ul>
-  </main>
+<DefaultLayout>
+  <h1>Welcome to <span class="text-gradient">{global.SITE_TITLE}'s Astro Experiment</span></h1>
+  <p class="instructions">
+    Here are a list o
+  </p>
+
+  <h3>Prerequisites/Goals</h3>
+  <ul>
+    <li>import JSON data via our Jekyll-based static site (aka gymcms)</li>
+    <li>render CSS from SASS/SCSS</li>
+  </ul>
+
+  <h3>Advantages</h3>
+
+  <ul>
+    <li>runs on node.js</li>
+    <li>very fast compilation</li>
+    <li>easily create pages from data</li>
+    <li>supports SCSS and Javascript compilation out of the box</li>
+    <li>plugins available to extend core functionality</li>
+    <li>supports nested layouts</li>
+    <li>support markdown and mdx out of the box</li>
+    <li>pioneered the implementation of "islands architecture": https://docs.astro.build/en/concepts/islands/</li>
+    <li>"zero-JS" out of the box, but supports any number of JS frameworks, including react, vue, svelte, etc.</li>
+    <li>Netlify is their official hosting partner</li>
+  </ul>
+
+  <h3>Disadvantages</h3>
+  <ul>
+    <li>Some things about it are strange or confusing</li>
+    <li>Supports page- and component-specific styles (not to the exclusion of global CSS), which is a bit weird. These styles are typically written at the bottom of the component, which is also weird. However, the CSS is all compiled at build time and appears in the document head.</li>
+  </ul>
+
+  <h3>Further Reading</h3>
+  <ul>
+    <li>https://www.brycewray.com/posts/2022/12/things-worth-watching-astro-eleventy-pipelines/</li>
+    <li>https://docs.astro.build/en/guides/migrate-to-astro/from-jekyll/</li>
+    <li>https://docs.astro.build/en/guides/migrate-to-astro/from-eleventy/</li>
+  </ul>
+
+  <ul role="list" class="link-card-grid">
+    <Card
+      href="https://docs.astro.build/"
+      title="Documentation"
+      body="Learn how Astro works and explore the official API docs."
+    />
+    <Card
+      href="https://astro.build/integrations/"
+      title="Integrations"
+      body="Supercharge your project with new frameworks and libraries."
+    />
+    <Card
+      href="https://astro.build/themes/"
+      title="Themes"
+      body="Explore a galaxy of community-built starter themes."
+    />
+    <Card
+      href="https://astro.build/chat/"
+      title="Community"
+      body="Come say hi to our amazing Discord community. ❤️"
+    />
+  </ul>
 </DefaultLayout>
 
 <style>
