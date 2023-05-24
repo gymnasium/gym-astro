@@ -2,7 +2,7 @@
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { CMS_URL, FEED_URL } from '@globals'
 
-const response = await fetch(`${CMS_URL}/feeds/pages.json`)
+const response = await fetch(`${CMS_URL}/feeds/generated-pages.json`)
 const data = await response.json()
 let page:any;
 

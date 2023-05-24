@@ -64,4 +64,7 @@ const webinars = defineCollection({
   }),
 });
 
-export const collections = { bios, blog, webinars };
+export const collections = 
+{ 
+  //bios, blog, webinars
+};

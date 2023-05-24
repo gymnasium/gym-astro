@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build --config astro.config.netlify.mjs"
+  publish = "dist"
+
+[context.develop]
+
+[context.develop.processing.images]
+  compress = true
+[context.develop.processing.css]
+  minify = true
+[context.develop.processing.js]
+  minify = true
+
+[context.deploy-preview]
+
+[context.deploy-preview.processing]
+  skip_processing = true
