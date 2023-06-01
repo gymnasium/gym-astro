@@ -4,8 +4,8 @@ import Card from '@components/Card.astro';
 import * as global from '@globals'
 ---
 
-<DefaultLayout>
-  <h1>Welcome to <span class="text-gradient">{global.SITE_TITLE}'s Astro Experiment</span></h1>
+<DefaultLayout title={global.META.subtitle}>
+  <h1>Welcome to <span class="text-gradient">{global.META.title}'s Astro Experiment</span></h1>
 
   <h3>Prerequisites/Goals</h3>
   <ul>

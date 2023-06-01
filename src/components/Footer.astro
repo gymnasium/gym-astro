@@ -1,18 +1,28 @@
 ---
+import * as global from '@globals'
+import UnorderedList from '@components/UnorderedList.astro';
 import Scripts from './Scripts.astro'
 
 const currentYear = new Date().getFullYear()
+
 ---
 
 <footer>
   <div class="container">
+    {global.NAV_FOOTER.map(
+      (item:any) => 
+      <div id={item.title.replaceAll(' ', '-').toLowerCase()} class=`footer-section ${item.title.replaceAll(' ', '-').toLowerCase()}`>
+        <h4>{item.title}</h4>
+        <UnorderedList links={item.links} />
+      </div>
+    )}
     <h4>Development Links</h4>
     <ul>
       <li><a href="https://thegymnasium.com">Gymnasium (Production)</a></li>
-      <li><a href="http://localhost:3030">Gym Astro</a></li>
-      <li><a href="http://localhost:4040">Gym Eleventy</a></li>
-      <li><a href="http://localhost:5050">Gym Next</a></li>
-      <li><a href="http://localhost:4000">Gym CMS</a></li>
+      <li><a href={global.ASTRO_URL}>Gym Astro</a></li>
+      <li><a href={global.ELEVENTY_URL}>Gym Eleventy</a></li>
+      <!-- <li><a href="http://localhost:5050">Gym Next</a></li> -->
+      <li><a href={global.CMS_URL}>Gym CMS</a></li>
     </ul>
     <small>&copy; {currentYear}</small>
   </div>

@@ -1,5 +1,4 @@
 ---
-const siteName = 'Aquent Gymnasium'
 import * as global from '@globals'
 
 interface Props {
@@ -9,11 +8,13 @@ interface Props {
   author?: any | null;
 }
 
-const { title, description, url, image, author } = Astro.props;
+const { title, description, image, author } = Astro.props;
 
-const metaTitle = title ? `${title} | ${global.SITE_TITLE}` : global.SITE_TITLE;
-const metaAuthor = author ? `${author}` : global.SITE_AUTHOR;
-const metaDesc = description ? `${description}` : global.SITE_DESCRIPTION;
+const metaTitle = title ? `${title} | ${global.META.title}` : global.META.title;
+const metaAuthor = author ? `${author}` : global.META.author;
+const metaDesc = description ? `${description}` : global.META.description;
+const metaURL = Astro.url ?? Astro.url;
+const metaImg = image ? `${image}` : global.META.og_img;
 ---
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,9 +27,10 @@ const metaDesc = description ? `${description}` : global.SITE_DESCRIPTION;
 <meta name="description" content={metaDesc} />
 <meta name="author" content={metaAuthor} />
 <meta name="generator" content={Astro.generator} />
-
-<meta property="og:title" content={`${title} | ${siteName}`} />
+<meta property="og:title" content={metaTitle} />
 <meta property="og:description" content={metaDesc} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content={url} />
-<meta property="og:image" content={Astro.url ? `${Astro.url}${image}` : image} />
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content={metaAuthor}>
+<meta property="og:url" content={metaURL} />
+<meta property="og:image" content={metaImg} />
