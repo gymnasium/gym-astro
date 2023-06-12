@@ -21,6 +21,7 @@ export default defineConfig({
 
   // })
   ],
+  outDir: "./dist",
   server: { port: 3030 },
   vite: {
     plugins: [yaml()]
