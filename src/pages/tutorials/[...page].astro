@@ -8,39 +8,39 @@ export async function getStaticPaths({ paginate }) {
   const response = await fetch(FEED_URL)
   const data = await response.json()
 
-  const courses = data.items.courses.filter((course) => course.live);
+  const tutorials = data.items.tutorials.filter((tutorial) => tutorial.live);
 
-  return paginate(courses, { pageSize: 6 })
+  return paginate(tutorials, { pageSize: 6 })
 }
 
 const { page } = Astro.props
 ---
 <DefaultLayout
-  title="Courses"
-  description="This page fetches the courses via a JSON feed provided by the gymcms."
+  title="Tutorials"
+  description="This page fetches the take 5 tutorials via a JSON feed provided by the gymcms."
 >
   <section>
-    <h1>Courses</h1>
+    <h1>Tutorials</h1>
     <p>
-      This page fetches the courses via a JSON feed provided by the gymcms: <a href={FEED_URL}>{FEED_URL}</a>.
+      This page fetches the tutorials via a JSON feed provided by the gymcms: <a href={FEED_URL}>{FEED_URL}</a>.
     </p>
   </section>
   <section>
-    <CourseSearch dataType="courses" />
+    <CourseSearch dataType="tutorials" />
   </section>
   <section>
-    <p class="text-sm"><em>Course {page.start + 1} through {page.end + 1} of {page.total} total courses.</em></p>
+    <p class="text-sm"><em>Tutorial {page.start + 1} through {page.end + 1} of {page.total} total tutorials.</em></p>
     <ul class="my-3">
       {
-        page.data.map((course) => (
+        page.data.map((tutorial) => (
           <li>
             <Card
-              url={`/courses/${course.title.replaceAll(' ', '-').toLowerCase()}`}
-              title={course.title}
-              footer={course.topic}
-              img={`${CMS_URL}${course.img}`}
+              url={`/tutorials/${tutorial.title.replaceAll(' ', '-').toLowerCase()}`}
+              title={tutorial.title}
+              footer={tutorial.topic}
+              img={`${CMS_URL}${tutorial.img}`}
             >
-              {course.description}
+              {tutorial.description}
             </Card>
           </li>
         ))
@@ -48,10 +48,10 @@ const { page } = Astro.props
     </ul>
     <div class="mt-12 grid place-content-center">
       <Pagination
-        firstPage={page.url.prev ? '/courses/' : null}
+        firstPage={page.url.prev ? '/tutorials/' : null}
         previousPage={page.url.prev ? page.url.prev : null}
         nextPage={page.url.next ? page.url.next : null}
-        lastPage={page.url.next ? `/courses/${Math.round(page.total / page.size)}` : null}
+        lastPage={page.url.next ? `/tutorials/${Math.round(page.total / page.size)}` : null}
         currentPage={page.currentPage}
         totalPages={Math.round(page.total / page.size)}
       />

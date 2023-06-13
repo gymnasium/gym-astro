@@ -6,32 +6,32 @@ import { CMS_URL, FEED_URL } from '@globals'
 export async function getStaticPaths() {
   const data = await fetch(FEED_URL).then((response) => response.json())
 
-  return data.items.courses.map((course) => {
+  return data.items.tutorials.map((tutorial) => {
     return {
-      params: { course: course.title.replaceAll(' ', '-').toLowerCase() },
-      props: { course },
+      params: { tutorial: tutorial.title.replaceAll(' ', '-').toLowerCase() },
+      props: { tutorial },
     }
   })
 }
 
-const { course } = Astro.props
+const { tutorial } = Astro.props
 ---
 
-<DefaultLayout title={course.title} description={course.body} url={course.title}>
+<DefaultLayout title={tutorial.title} description={tutorial.body} url={tutorial.title}>
   <Breadcrumbs>
     <BreadcrumbsItem href="/" label="Home" />
-    <BreadcrumbsItem href="/courses/" label="Courses via JSON" />
-    <BreadcrumbsItem currentPage={true} label={course.title} />
+    <BreadcrumbsItem href="/tutorials/" label="tutorials via JSON" />
+    <BreadcrumbsItem currentPage={true} label={tutorial.title} />
   </Breadcrumbs>
   <section class="">
-    <h1>{course.title}</h1>
-    <h4>{course.id}</h4>
-    {course.img && <img src={`${CMS_URL}${course.img}`} alt={`Image of ${course.title}`} />}
-    <p>{course.description}</p>
+    <h1>{tutorial.title}</h1>
+    <h4>{tutorial.id}</h4>
+    {tutorial.img && <img src={`${CMS_URL}${tutorial.img}`} alt={`Image of ${tutorial.title}`} />}
+    <p>{tutorial.description}</p>
   </section>
 </DefaultLayout>
 
-<!-- <style lang="scss">
+<style lang="scss">
   ul {
     display: grid;
     grid-template-columns: 1fr;
@@ -46,4 +46,4 @@ const { course } = Astro.props
       grid-template-columns: repeat(3, 1fr);
     }
   }
-</style> -->
+</style>
