@@ -5,10 +5,6 @@ links: any;
 
 const { links } = Astro.props as Props;
 ---
-<ul>
 {links.map((link) => (
-  <li>
-    <a href={link.href} rel={link.rel} target={link.target}>{link.title}</a>
-  </li>
+  <li><a href={link.href} rel={link.rel} target={link.target}>{link.title}</a></li>
 ))}
-</ul>

@@ -7,11 +7,11 @@ const { dataType } = Astro.props
 
 import Search from './CourseSearch.jsx';
 import { CMS_URL } from '@globals'
-export const FEED_URL = `${CMS_URL}/feeds/courses.json`
+export const FEED_URL = `${CMS_URL}/feeds/complete.json`
 
 const response = await fetch(FEED_URL)
 const data = await response.json()
-const courses = data['items'].filter((course) => course.live);
+const courses = data['items']['courses'].filter((course) => course.live);
 
 ---
 

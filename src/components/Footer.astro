@@ -1,6 +1,6 @@
 ---
 import * as global from '@globals'
-import UnorderedList from '@components/UnorderedList.astro';
+import ListLinkMap from '@components/ListLinkMap.astro';
 import Scripts from './Scripts.astro'
 
 const currentYear = new Date().getFullYear()
@@ -13,7 +13,9 @@ const currentYear = new Date().getFullYear()
       (item:any) => 
       <div id={item.title.replaceAll(' ', '-').toLowerCase()} class=`footer-section ${item.title.replaceAll(' ', '-').toLowerCase()}`>
         <h4>{item.title}</h4>
-        <UnorderedList links={item.links} />
+        <ul>
+          <ListLinkMap links={item.links} />
+        </ul>
       </div>
     )}
     <small>&copy; {currentYear}</small>

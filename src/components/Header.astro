@@ -1,5 +1,7 @@
 ---
+import * as global from '@globals'
 import Nav from '../components/Nav.astro'
+import ListItem from '@components/ListItem.astro';
 import { SkipLinks } from 'accessible-astro-components'
 import { Icon } from 'astro-icon'
 ---
@@ -7,21 +9,12 @@ import { Icon } from 'astro-icon'
 <header>
   <SkipLinks />
   <Nav>
-    <li class="menu-item">
-      <a href="/">Home</a>
-    </li>
-    <li class="menu-item">
-      <a href="/about/">About</a>
-    </li>
-    <li class="menu-item">
-      <a href="/instructors/">Instructors</a>
-    </li>
-    <li class="menu-item">
-      <a href="/courses/">Courses</a>
-    </li>
-    <li class="menu-item">
-      <a href="/webinars/">Webinars</a>
-    </li>
+    {global.NAV_MAIN.map(
+      (item:any) => 
+        <li class="menu-item">
+          <a href={item.href}>{item.title}</a>
+        </li>
+    )}
   </Nav>
 </header>
 
