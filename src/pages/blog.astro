@@ -1,0 +1,33 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import * as global from '@globals'
+import ListLinkMap from '@components/ListLinkMap.astro';
+import Parser from 'rss-parser'
+
+let parser = new Parser();
+const feed = await parser.parseURL(global.BLOG_FEED)
+// console.log(feed.title)
+
+
+
+// const response = await fetch()
+// const text = await response.text()
+
+// const dom = await new JSDOM(response)
+
+// console.log()
+  // .then(response => response.text())
+  // .then(str => JSDOM(response))
+  // .then(data => console.log(data))
+
+let content:any;
+
+
+---
+<DefaultLayout title="About">
+  <h4>{feed.title}</h4>
+
+  <ul>
+    <ListLinkMap links={feed.items} />
+  </ul>
+</DefaultLayout>

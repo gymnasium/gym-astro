@@ -6,5 +6,5 @@ links: any;
 const { links } = Astro.props as Props;
 ---
 {links.map((link) => (
-  <li><a href={link.href} rel={link.rel} target={link.target}>{link.title}</a></li>
+  <li>{link.pubDate ?? <span>{link.pubDate}</span>} <a href={link.href || link.link} rel={link.rel} target={link.target}>{link.title}</a></li>
 ))}

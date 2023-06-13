@@ -10,3 +10,4 @@ export const NAV_FOOTER = await DATA.items.config.navigation.footer;
 export const LMS_URL = await CONFIG.lms_url
 export const ASTRO_URL = await CONFIG.astro_url
 export const ELEVENTY_URL = await CONFIG.eleventy_url
+export const BLOG_FEED = await CONFIG.feeds.blog
