@@ -1,10 +1,10 @@
 ---
 export interface Props {
-links: any;
+  links: any;
 }
 
 const { links } = Astro.props as Props;
 ---
-{links.map((link) => (
+{links.map((link:any) => (
   <li>{link.pubDate ?? <span>{link.pubDate}</span>} <a href={link.href || link.link} rel={link.rel} target={link.target}>{link.title}</a></li>
 ))}
