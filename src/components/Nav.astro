@@ -1,14 +1,17 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
+import { Image } from 'astro:assets';
 import { DarkMode } from 'accessible-astro-components'
+import logoWhite from "@assets/img/brand/gymnasium-logo-white.svg";
+import logoBlack from "@assets/img/brand/gymnasium-logo-black.svg";
 ---
 
 <div id="main-navigation" class="is-desktop py-8">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
       <!-- TODO: a better image swap process when toggling between light/dark modes? -->
-      <img src={(await import('@assets/img/brand/gymnasium-logo-white.svg')).default} alt="Aquent Gymnasium" width="200" height="23" class="logo-white" />
-      <img src={(await import('@assets/img/brand/gymnasium-logo-black.svg')).default} alt="Aquent Gymnasium" width="200" height="23" class="logo-black" />
+      <Image src={logoWhite} alt="Aquent Gymnasium" width="200" height="23" class="logo-white" />
+      <Image src={logoBlack} alt="Aquent Gymnasium" width="200" height="23" class="logo-black" />
       <!-- <span class="font-bold">Accessible Astro</span> -->
     </a>
     <div class="wrapper">

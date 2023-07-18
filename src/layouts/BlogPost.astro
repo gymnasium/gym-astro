@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import DefaultLayout from './DefaultLayout.astro'
+import { Image } from 'astro:assets';
 
 import FormattedDate from '@components/FormattedDate.astro';
 
@@ -17,7 +18,8 @@ updatedDate={updatedDate}
 heroImage={heroImage}
 >
   <article>
-    {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+    {heroImage && <Image width={720} height={360} src={(await import(heroImage /* @vite-ignore */)).default} alt={`Image of ${title}`} loading="lazy" decoding="async" />}
+
     <h1 class="title">{title}</h1>
     <FormattedDate date={pubDate} />
     {

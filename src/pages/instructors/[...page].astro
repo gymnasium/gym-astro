@@ -2,7 +2,7 @@
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem, Card, Pagination } from 'accessible-astro-components'
 
-import { FEED_URL } from '@globals'
+import { CMS_URL, FEED_URL } from '@globals'
 
 export async function getStaticPaths({ paginate }) {
   const response = await fetch(FEED_URL)
@@ -39,7 +39,7 @@ const { page } = Astro.props
               url={`/instructors/${bio.title.replaceAll(' ', '-').toLowerCase()}`}
               title={bio.title}
               footer={bio.subtitle}
-              img={`${bio.img}`}
+              img={`${CMS_URL}${bio.img}`}
             >
               {bio.description}
             </Card>

@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets';
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { CMS_URL, FEED_URL } from '@globals'
 
@@ -26,7 +27,7 @@ const { tutorial } = Astro.props
   <section class="">
     <h1>{tutorial.title}</h1>
     <h4>{tutorial.id}</h4>
-    {tutorial.img && <img src={`${CMS_URL}${tutorial.img}`} alt={`Image of ${tutorial.title}`} />}
+    {tutorial.img && <Image src={`${CMS_URL}${tutorial.img}`} alt={`Image of ${tutorial.title}`} width="765" height="430" loading="lazy" decoding="async" />}
     <p>{tutorial.description}</p>
   </section>
 </DefaultLayout>

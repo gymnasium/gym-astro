@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import { astroImageTools } from 'astro-imagetools';
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
@@ -10,7 +9,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [astroImageTools, compress(), mdx(), react(), robotsTxt(), sitemap()],
+  integrations: [compress(), mdx(), react(), robotsTxt(), sitemap()],
   output: "server",
   adapter: netlify(),
   vite: {
