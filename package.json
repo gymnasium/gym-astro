@@ -17,6 +17,9 @@
     "@astrojs/partytown": "^1.2.0",
     "@astrojs/react": "^2.1.1",
     "@astrojs/sitemap": "^1.2.1",
+    "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
+    "@edx/frontend-platform": "^4.6.0",
+    "@edx/paragon": "^20.45.3",
     "@rollup/plugin-yaml": "^4.0.1",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
@@ -35,10 +38,24 @@
     "prettier": "^2.8.3",
     "prettier-plugin-astro": "^0.8.0",
     "prettier-plugin-tailwindcss": "^0.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-helmet": "6.1.0",
+    "react-redux": "7.2.9",
+    "react-router": "5.3.4",
+    "react-router-dom": "5.3.4",
+    "redux": "4.2.1",
+    "redux-devtools-extension": "2.13.9",
+    "redux-logger": "3.0.6",
+    "redux-saga": "1.2.3",
+    "redux-thunk": "2.4.2",
     "rss-parser": "^3.13.0",
     "sass": "^1.49.9",
     "svgo": "^2.8.0"
+  },
+  "devDependencies": {
+    "@edx/browserslist-config": "^1.2.0",
+    "@edx/frontend-build": "^12.9.0",
+    "@edx/reactifex": "^2.2.0"
   }
 }
