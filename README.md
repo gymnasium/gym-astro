@@ -7,8 +7,13 @@
 [NVM - Node Version Manager](https://github.com/nvm-sh/nvm) (recommended)
 
 Steps:
+If using nvm, start with:
 ```
-nvm use
+nvm use 
+```
+Otherwise, proceed with installing the appropriate node version and continue from there:
+
+```
 npm install
 npm run dev
 ```
