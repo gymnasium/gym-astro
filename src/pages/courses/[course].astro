@@ -1,7 +1,8 @@
 ---
-import DefaultLayout from '@layouts/DefaultLayout.astro'
-import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
-import { CMS_URL, FEED_URL } from '@globals'
+import DefaultLayout from '@layouts/DefaultLayout.astro';
+import { Image } from 'astro:assets';
+import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components';
+import { CMS_URL, FEED_URL } from '@globals';
 
 export async function getStaticPaths() {
   const data = await fetch(FEED_URL).then((response) => response.json())
@@ -26,7 +27,8 @@ const { course } = Astro.props
   <section class="">
     <h1>{course.title}</h1>
     <h4>{course.id}</h4>
-    {course.img && <img src={`${CMS_URL}${course.img}`} alt={`Image of ${course.title}`} />}
+    {course.img && <Image src={`${CMS_URL}${course.img}`} alt={`Image of ${course.title}`} width="574" height="488" loading="lazy" decoding="async" />}
+
     <p>{course.description}</p>
   </section>
 </DefaultLayout>

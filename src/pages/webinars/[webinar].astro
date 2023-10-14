@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets';
 import { Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
 import { CMS_URL, FEED_URL } from '@globals'
 
@@ -26,7 +27,7 @@ const { webinar } = Astro.props
   <section class="">
     <h1>{webinar.title}</h1>
     <h4>{webinar.id}</h4>
-    {webinar.event_ogimage && <img src={`${webinar.event_ogimage}`} alt={`Image of ${webinar.title}`} />}
+    {webinar.event_ogimage && <Image src={`${CMS_URL}${webinar.event_ogimage}`} alt={`Image of ${webinar.title}`} width="1200" height="628" loading="lazy" decoding="async" />}
     <p>{webinar.description}</p>
   </section>
 </DefaultLayout>

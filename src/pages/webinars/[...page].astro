@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets';
 import { Card, Pagination } from 'accessible-astro-components'
-import CourseSearch from '@components/CourseSearch.astro'
 import { CMS_URL, FEED_URL } from '@globals'
 
 export async function getStaticPaths({ paginate }) {
@@ -36,7 +36,7 @@ const { page } = Astro.props
               url={`/webinars/${webinar.id}`}
               title={webinar.title}
               footer={webinar.subtitle}
-              img={webinar.recording_ogimage}
+              img={`${CMS_URL}${webinar.recording_ogimage}`}
               }
             >
               {webinar.description}
