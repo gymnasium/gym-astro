@@ -17,3 +17,12 @@ Otherwise, proceed with installing the appropriate node version and continue fro
 npm install
 npm run dev
 ```
+
+### Note
+
+If you are not currently serving the gymcms on port 4000 in your local environment, Astro will throw an error. A simple workaround
+is to change the first line of `/src/globals.ts` to:
+
+```js
+export const CMS_URL = 'https://data.gym.soy'
+```
