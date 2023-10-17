@@ -4,13 +4,13 @@
   "author": "Roman Edirisinghe",
   "type": "module",
   "version": "0.0.1",
-  "engines" : { 
-    "node" : ">=18.0.0"
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node build.mjs; astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -39,6 +39,7 @@
     "prettier-plugin-tailwindcss": "^0.2.2",
     "rss-parser": "^3.13.0",
     "sass": "^1.49.9",
-    "svgo": "^2.8.0"
+    "svgo": "^2.8.0",
+    "vite": "^4.4.11"
   }
 }
