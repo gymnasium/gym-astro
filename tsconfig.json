@@ -10,6 +10,7 @@
       "@content/*": ["src/content/*"],
       "@assets/*": ["src/assets/*"],
       "@data/*": ["src/data/*"],
+      "@js/*": ["src/js/*"],
       "@layouts/*": ["src/layouts/*"],
       "@globals": ["src/globals.ts"],
     },
