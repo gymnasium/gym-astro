@@ -25,7 +25,7 @@ window.addEventListener('message', receiveMessage, false);
 function checkAuth(){
   console.log(`${domain} sending message`);
   if (!!childFrame) {
-    childFrame.contentWindow.postMessage('', 'http://learn.gym.soy');
+    childFrame.contentWindow.postMessage('', 'https://learn.gym.soy');
   }
 }
 
