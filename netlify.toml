@@ -1,6 +1,39 @@
+# [[headers]]
+#   for = "/*"
+#     [headers.values]
+#     Access-Control-Allow-Origin = "*"
+[[headers]]
+  for = "/favicon/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+[[headers]]
+  for = "/manifest.json"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+[[headers]]
+  for = "*.js"
+  [headers.values] # cache for 1 year
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000"
+[[headers]]
+  for = "*.css"
+  [headers.values] # cache for 1 year
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000"
+[[headers]]
+  for = "/*.(svg|jpg|jpeg|png|gif|webp|ico|ttf|ttc|otf|eot|woff|woff2)"
+  [headers.values] # cache for 1 year
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [build]
   command = "npm run build --config astro.config.netlify.mjs"
   publish = "dist"
+  edge_functions = "netlify/functions"
+
+# [[edge_functions]]
+#   function = "test"
+#   path = "/test"
 
 [context.develop]
 
@@ -15,3 +48,10 @@
 
 [context.deploy-preview.processing]
   skip_processing = true
+
+# Netlify CLI
+[dev]
+  command = "npm run dev"
+  port=80
+  framework="#custom"
+  targetPort=3030

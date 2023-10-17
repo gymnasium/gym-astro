@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "node build.mjs; astro build",
+    "build": "astro build && node build.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
