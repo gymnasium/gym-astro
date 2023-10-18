@@ -5,9 +5,24 @@ export const BIOS = await DATA.items.bios;
 export const CONFIG = await DATA.items.config;
 export const META = await DATA.items.config.meta;
 export const NAVIGATION = await DATA.items.config.navigation;
-export const NAV_MAIN = await DATA.items.config.navigation.main;
-export const NAV_FOOTER = await DATA.items.config.navigation.footer;
+export let NAV_MAIN = await DATA.items.config.navigation.main;
+export let NAV_FOOTER = await DATA.items.config.navigation.footer;
 export const LMS_URL = await CONFIG.lms_url
 export const ASTRO_URL = await CONFIG.astro_url
 export const ELEVENTY_URL = await CONFIG.eleventy_url
 export const BLOG_FEED = await CONFIG.feeds.blog
+
+function replaceObjectParam(obj, key, old_value, new_value) {
+  obj[key] = obj[key].replace(old_value, new_value)
+  return obj
+}
+
+NAV_MAIN.forEach(item => {
+  replaceObjectParam(item, 'href', 'https://gym.soy', '')
+});
+
+NAV_FOOTER.forEach(item => {
+  item['links'].forEach(child => {
+    replaceObjectParam(child, 'href', 'https://gym.soy', '')
+  });
+});
