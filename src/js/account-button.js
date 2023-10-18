@@ -1,5 +1,4 @@
 // Account button login/logout
-window.auth = 'true'
 let intervalId;
 const accountButton = document.querySelectorAll('.account-button');
 
