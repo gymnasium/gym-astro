@@ -10,25 +10,25 @@ const allowedOrigins = [
 const domain = window.location.origin;
 const childFrame = document.getElementById('iframe');
 
-const receiveMessage = function(event) {
+const receiveMessage = async function(event) {
   // Abort if request doesn't come from a valid origin
   if (!allowedOrigins.includes(event.origin)) return;
 
   // Log the message contents to the console
-  const response = JSON.parse(event.data);
+  const response = await JSON.parse(event.data);
 
-  window.auth = response.auth === undefined ? 'false' : response.auth;
-  window.cookies = response.cookies === undefined ? 'false' : response.cookies;
-  console.log(response);
+  window.auth = await response.auth === undefined ? 'false' : response.auth;
+  window.cookies = await response.cookies === undefined ? 'false' : response.cookies;
+  console.log(await response);
 };
 
 window.addEventListener('message', receiveMessage, false);
 
-function checkAuth() {
+async function checkAuth() {
   if (!!childFrame) {
     try {
       console.log(`${domain} sending message`);
-      childFrame.contentWindow.postMessage(null, 'https://learn.gym.soy');
+      await childFrame.contentWindow.postMessage(null, 'https://learn.gym.soy');
     } catch (err) {
       console.warn(err);
     }
