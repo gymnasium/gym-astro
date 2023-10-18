@@ -1,8 +1,9 @@
 // Account button login/logout
+window.auth = 'true'
 let intervalId;
-const accountButton = document.getElementById('account-button');
+const accountButton = document.querySelectorAll('.account-button');
 
-async function toggleText(el,auth) {
+async function toggleText(el, auth) {
   let state = await auth;
   if (state === 'true') {
     console.log(`user authenticated! changing button text`);
@@ -12,11 +13,17 @@ async function toggleText(el,auth) {
   }
 }
 
+function accountButtons(els, auth) {
+  els.forEach((el) => {
+    toggleText(el,auth);
+  });
+}
+
 const asyncAuth = async () => {
   let auth = await window.auth;
   if (auth === 'true') {
     stopInterval();
-    toggleText(accountButton,window.auth);
+    accountButtons(accountButton, window.auth);
   } else {
     console.warn('window.auth is still false')
   }
