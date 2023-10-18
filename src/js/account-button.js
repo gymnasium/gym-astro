@@ -1,4 +1,5 @@
 // Account button login/logout
+let intervalId;
 const accountButton = document.getElementById('account-button');
 
 async function toggleText(el,auth) {
@@ -14,10 +15,22 @@ async function toggleText(el,auth) {
 const asyncAuth = async () => {
   let auth = await window.auth;
   if (auth === 'true') {
+    stopInterval();
     toggleText(accountButton,window.auth);
   } else {
     console.warn('window.auth is still false')
   }
 }
 
-await asyncAuth();
+function startInterval() {
+  if (!intervalId) {
+    intervalId = setInterval(asyncAuth, 1000);
+  }
+}
+function stopInterval() {
+  clearInterval(intervalId);
+  // release our intervalID from the variable
+  intervalId = null;
+}
+
+startInterval();
