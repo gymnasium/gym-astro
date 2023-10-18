@@ -24,7 +24,7 @@ const asyncAuth = async () => {
     stopInterval();
     accountButtons(accountButton, window.auth);
   } else {
-    console.warn('window.auth is still false')
+    console.warn('user not authenticated.');
   }
 }
 
