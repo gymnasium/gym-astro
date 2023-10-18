@@ -1,3 +1,6 @@
+let auth;
+let edxCookies;
+
 const allowedOrigins = [
   'https://learn.gym.soy',
   'http://learn.gym.soy',
@@ -16,16 +19,21 @@ const receiveMessage = function(event) {
 
   // Log the message contents to the console
   const response = JSON.parse(event.data);
-  const auth = response.auth;
-  console.log(response);
+  auth = response.auth;
+  edxCookies = response.cookies;
+  console.log(`auth: ${auth}`, `edxCookies: ${edxCookies}`);
 };
 
 window.addEventListener('message', receiveMessage, false);
 
-function checkAuth(){
-  console.log(`${domain} sending message`);
+function checkAuth() {
   if (!!childFrame) {
-    childFrame.contentWindow.postMessage('', 'https://learn.gym.soy');
+    try {
+      console.log(`${domain} sending message`);
+      childFrame.contentWindow.postMessage(null, 'https://learn.gym.soy');
+    } catch (err) {
+      console.warn(err);
+    }
   }
 }
 
