@@ -1,6 +1,3 @@
-let auth;
-let edxCookies;
-
 const allowedOrigins = [
   'https://learn.gym.soy',
   'http://learn.gym.soy',
@@ -19,9 +16,10 @@ const receiveMessage = function(event) {
 
   // Log the message contents to the console
   const response = JSON.parse(event.data);
-  auth = response.auth;
-  edxCookies = response.cookies;
-  console.log(`auth: ${auth}`, `edxCookies: ${edxCookies}`);
+
+  window.auth = response.auth;
+  window.cookies = response.cookies;
+  console.log(response);
 };
 
 window.addEventListener('message', receiveMessage, false);
