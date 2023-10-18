@@ -1,5 +1,6 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
+import AccountButton from './AccountButton.astro'
 import { Image } from 'astro:assets';
 import { DarkMode } from 'accessible-astro-components'
 import logoWhite from "@assets/img/brand/gymnasium-logo-white.svg";
@@ -18,6 +19,7 @@ import logoBlack from "@assets/img/brand/gymnasium-logo-black.svg";
       <nav class="desktop-menu" aria-label="Main navigation desktop">
         <ul class="menu">
           <slot />
+          <AccountButton />
         </ul>
       </nav>
       <DarkMode />

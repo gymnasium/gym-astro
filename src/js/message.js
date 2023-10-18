@@ -17,8 +17,8 @@ const receiveMessage = function(event) {
   // Log the message contents to the console
   const response = JSON.parse(event.data);
 
-  window.auth = response.auth;
-  window.cookies = response.cookies;
+  window.auth = response.auth === undefined ? 'false' : response.auth;
+  window.cookies = response.cookies === undefined ? 'false' : response.cookies;
   console.log(response);
 };
 

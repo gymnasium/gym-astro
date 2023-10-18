@@ -1,0 +1,28 @@
+---
+import * as global from '@globals'
+const login = `${global.LMS_URL}/login`
+const logout = `${global.LMS_URL}/logout`
+---
+<li class="menu-item">
+  <a id="account-button" href={login} aria-label="Sign In" data-login-text="Sign In" data-login-url={login} data-logout-text="Sign Out" data-logout-url={logout}>Sign In</a>
+</li>
+<script>
+const accountButton = document.getElementById('account-button');
+function toggleText(el,auth) {
+  if (auth === 'true') {
+    console.log(`user authenticated! changing button text`);
+    el.innerText = el.getAttribute('data-logout-text');
+    el.href = el.getAttribute('data-logout-url');
+    el.ariaLabel = el.getAttribute('data-logout-text');
+  }
+}
+
+const asyncAuth = () => {
+  return window.auth;
+}
+
+const userAuth = await asyncAuth();
+
+toggleText(accountButton,userAuth);
+
+</script>
