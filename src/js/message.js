@@ -25,7 +25,6 @@ const receiveMessage = async function(event) {
 window.addEventListener('message', receiveMessage, false);
 
 async function checkAuth() {
-  window.auth = 'true'
   if (!!childFrame) {
     try {
       console.log(`${domain} sending message`);
