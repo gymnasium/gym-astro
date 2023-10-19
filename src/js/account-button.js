@@ -1,6 +1,7 @@
 // Account button login/logout
 let intervalId;
 const accountButton = document.querySelectorAll('.account-button');
+let counter = 0;
 
 async function toggleText(el, auth) {
   let state = await auth;
@@ -19,12 +20,15 @@ function accountButtons(els, auth) {
 }
 
 const asyncAuth = async () => {
+  counter ++;
+  if (counter === 10){
+    stopInterval();
+    console.warn(`failed to get authentication after ${counter} tries!`);
+  }
   let auth = await window.auth;
   if (auth === 'true') {
     stopInterval();
     accountButtons(accountButton, window.auth);
-  } else {
-    console.warn('user not authenticated.');
   }
 }
 
@@ -33,6 +37,7 @@ function startInterval() {
     intervalId = setInterval(asyncAuth, 1000);
   }
 }
+
 function stopInterval() {
   clearInterval(intervalId);
   // release our intervalID from the variable
