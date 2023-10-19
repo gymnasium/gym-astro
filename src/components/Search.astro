@@ -1,0 +1,15 @@
+---
+// via @https://danidiaztech.com/create-astro-search-component/
+export interface Props {
+  dataObj: string;
+  dataFilter: string;
+  dataKeys: any;
+}
+const { dataObj, dataFilter, dataKeys } = Astro.props
+
+import Search from './Search.jsx'
+import { DATA } from '@globals'
+const dataType = DATA['items'][`${dataObj}`].filter((course) => course[dataFilter]);
+
+---
+<Search client:load searchList={dataType} dataObj={dataObj} dataKeys={dataKeys} />

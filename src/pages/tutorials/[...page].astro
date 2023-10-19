@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import { Card, Pagination } from 'accessible-astro-components'
-import CourseSearch from '@components/CourseSearch.astro'
+import Search from '@components/Search.astro'
 import { CMS_URL, FEED_URL } from '@globals'
 
 export async function getStaticPaths({ paginate }) {
@@ -26,7 +26,7 @@ const { page } = Astro.props
     </p>
   </section>
   <section>
-    <CourseSearch dataType="tutorials" />
+    <Search dataObj="tutorials" dataFilter="live"  />
   </section>
   <section>
     <p class="text-sm"><em>Tutorial {page.start + 1} through {page.end + 1} of {page.total} total tutorials.</em></p>

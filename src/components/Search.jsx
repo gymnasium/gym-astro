@@ -3,16 +3,22 @@
 import Fuse from 'fuse.js';
 import { useState } from 'react';
 
-// Configs fuse.js
-// https://fusejs.io/api/options.html
-const options = {
-  keys: ['title', 'description', 'slug'],
-  includeMatches: true,
-  minMatchCharLength: 2,
-  threshold: 0.5,
-};
+function Search({ searchList, dataObj, dataKeys }) {
+  let keyName = ['id', 'title', 'description', 'topic', 'slug']
+  if (dataKeys !== undefined && dataKeys !== null) {
+    keyName = dataKeys
+  }
+  
+  // Configs fuse.js
+  // https://fusejs.io/api/options.html
+  let options = {
+    keys: keyName,
+    includeMatches: true,
+    minMatchCharLength: 5,
+    threshold: 0.5,
+  };
 
-function Search({ searchList, dataType }) {
+
   // User's input
   const [query, setQuery] = useState('');
 
@@ -29,7 +35,7 @@ function Search({ searchList, dataType }) {
     setQuery(value);
   }
 
-  const placeholder = `Search for ${dataType}`
+  const placeholder = `Search for ${dataObj}`
 
   return (
     <>
@@ -43,8 +49,8 @@ function Search({ searchList, dataType }) {
       <ul>
         {items &&
           items.map((item) => (
-            <li>
-              <a href={`/${dataType}/${item.title.toLowerCase().replaceAll(' ', '-')}`}>{item.title}</a> - {item.description}
+            <li key={item.id}>
+              <a href={`/${dataObj}/${item.title.toLowerCase().replaceAll(' ', '-')}`}>{item.title}</a> - {item.description}
             </li>
           ))}
       </ul>
