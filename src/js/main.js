@@ -26,5 +26,5 @@ if (typeof userinfo !== 'undefined' && userinfo !== null) {
 // wait for astro's view transitions
 document.addEventListener('astro:page-load', () => {
   checkAccountButtons(auth);
-  console.log(`auth: ${auth}\nuserinfo:$`,userinfo)
+  console.log(`auth: ${auth}\nuserinfo: `,userinfo)
 });

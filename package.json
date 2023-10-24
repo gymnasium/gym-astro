@@ -15,20 +15,19 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^1.1.2",
-    "@astrojs/netlify": "^3.0.2",
-    "@astrojs/partytown": "^2.0.1",
-    "@astrojs/react": "^3.0.3",
-    "@astrojs/sitemap": "^3.0.1",
+    "@astrojs/mdx": "1.1.2",
+    "@astrojs/netlify": "3.0.3",
+    "@astrojs/react": "3.0.3",
+    "@astrojs/sitemap": "3.0.2",
     "@rollup/plugin-yaml": "^4.0.1",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
-    "accessible-astro-components": "^2.2.1",
-    "astro": "^3.2.4",
-    "astro-compress": "^2.0.15",
-    "astro-icon": "^0.8.1",
+    "accessible-astro-components": "^2.3.0",
+    "astro": "3.3.2",
+    "astro-compress": "2.1.5",
+    "astro-icon": "0.8.1",
     "astro-robots-txt": "^1.0.0",
     "eslint": "^8.33.0",
     "eslint-plugin-astro": "^0.23.0",
@@ -40,6 +39,6 @@
     "rss-parser": "^3.13.0",
     "sass": "^1.49.9",
     "svgo": "^2.8.0",
-    "vite": "^4.4.11"
+    "vite": "4.5.0"
   }
 }
