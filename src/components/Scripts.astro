@@ -1,5 +1,11 @@
-<script id="console-message">
+---
+import * as global from '@globals'
+// const iframeSrc = `${global.LMS_URL}/iframe`
+const iframeSrc = `http://local.overhang.io/iframe`
 
+---
+
+<script id="console-message">
 // console.log(`
 // +-+-+-+-+-+-+-+-+-+
 // |G|y|m|n|a|s|i|u|m|
@@ -9,11 +15,8 @@
 // Add “loaded” class once the document has completely loaded.
 addEventListener('load', ()=> {
   document.documentElement.classList.add('loaded');
-
 });
 </script>
-<iframe id="iframe" src="https://learn.gym.soy/iframe"></iframe>
 <script>
-import "../js/message.js";
-import "../js/account-button.js";
+import "../js/main.js";
 </script>
