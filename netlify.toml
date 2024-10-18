@@ -25,6 +25,12 @@
   [headers.values] # cache for 1 year
     Access-Control-Allow-Origin = "*"
     Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Robots-Tag = "noindex"
 
 [build]
   command = "npm run build --config astro.config.netlify.mjs"
